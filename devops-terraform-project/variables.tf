@@ -27,6 +27,14 @@ variable "resources" {
     })
     description = "Resource description"
 }
+variable healthcheck {
+    type        = object({
+        name    = string
+        port    = number
+        path    = string
+    })
+}
+
 variable "cidr_blocks" {
     type        = list(list(string))
     description = "cidr list of lists"

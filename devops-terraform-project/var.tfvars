@@ -10,6 +10,12 @@ resources = {
   disk = 10
   memory = 2
 }
+
+healthcheck = {
+    name   = "test"
+    port   = 80
+    path   = "/"
+}
 cidr_blocks = [ 
     ["10.10.0.0/24"],
     ["10.11.0.0/24"], 
