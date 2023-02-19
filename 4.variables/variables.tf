@@ -12,3 +12,7 @@ variable "labels" {
   type        = map(string)
   description = "Labels to add to resources"
 }
+
+variable "public_ssh_key_path" {
+  type        = string
+}
