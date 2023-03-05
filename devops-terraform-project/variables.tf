@@ -34,6 +34,14 @@ variable healthcheck {
         path    = string
     })
 }
+variable "az" {
+    type        = list(string)
+    default     = [
+        "ru-central1-a",
+        "ru-central1-b",
+        "ru-central1-c"
+    ]
+}
 
 variable "cidr_blocks" {
     type        = list(list(string))
@@ -58,4 +66,15 @@ variable "nlb_healthcheck" {
 variable "public_ssh_key_path" {
     type        = string
     default     = ""
+}
+
+variable "vm_count" {
+    type        = number
+    description = "Number of being created VMs"
+}
+
+
+variable "disk_count" {
+    type        = number
+    description = "Number of being created disks for vm"
 }

@@ -31,4 +31,8 @@ nlb_healthcheck = {
   port = 8080
 }
 
-public_ssh_key_path = "~/.ssh/id_rsa.pub"
+public_ssh_key_path = ""
+
+vm_count = 3
+
+disk_count = 2
