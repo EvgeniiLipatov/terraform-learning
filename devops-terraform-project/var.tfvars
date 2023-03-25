@@ -34,6 +34,6 @@ nlb_healthcheck = {
 
 public_ssh_key_path = "/home/lipatovea/.ssh/id_rsa_ctrl2go.pub"
 
-vm_count = 3
+vm_count = 4
 
 disk_count = 1
