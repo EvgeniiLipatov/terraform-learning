@@ -78,3 +78,8 @@ variable "disk_count" {
     type        = number
     description = "Number of being created disks for vm"
 }
+
+variable "image_family" {
+    type = string
+    description = "Image to create vm from"
+}

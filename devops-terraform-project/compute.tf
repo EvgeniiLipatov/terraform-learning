@@ -1,8 +1,12 @@
+data "yandex_compute_image" "this" {
+  family = var.image_family
+}
+
 resource "yandex_compute_disk" "this" {
   count         = var.disk_count
   name          = "${local.prefix}-data-${count.index}"
   type          = "network-ssd"
-  zone          = var.az[0]
+  zone          = var.az[count.index % length(var.az)]
 }
 
 resource "yandex_compute_instance" "vm" {
@@ -15,10 +19,10 @@ resource "yandex_compute_instance" "vm" {
       memory    = var.resources.memory
     }
     labels = var.labels
-
+    
     boot_disk {
       initialize_params {
-        image_id = var.imageid
+        image_id = data.yandex_compute_image.this.id
         size     = var.resources.disk
       }
     }
@@ -34,6 +38,15 @@ resource "yandex_compute_instance" "vm" {
     }
     metadata = {
         ssh-keys = var.public_ssh_key_path != "" ? "yc-user:${file("${var.public_ssh_key_path}")}" : "yc-user:tls_private_key.my-test-key[0].public_key_pem"
+    }
+    provisioner "remote-exec" {
+      script = "./script.sh"
+      connection {
+        host = self.network_interface.0.nat_ip_address
+        type = "ssh"
+        user = "centos"
+        agent = true
+      }
     }
 }
 

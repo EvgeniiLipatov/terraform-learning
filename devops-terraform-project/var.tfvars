@@ -1,5 +1,6 @@
 vm_name_1 = "vm1"
 imageid = "fd82tb3u07rkdkfte3dn"
+image_family = "centos-7"
 
 labels = {
     "project" = "slurm"
@@ -31,8 +32,8 @@ nlb_healthcheck = {
   port = 8080
 }
 
-public_ssh_key_path = ""
+public_ssh_key_path = "/home/lipatovea/.ssh/id_rsa_ctrl2go.pub"
 
 vm_count = 3
 
-disk_count = 2
+disk_count = 1
